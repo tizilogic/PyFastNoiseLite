@@ -1,0 +1,3 @@
+include VERSION
+recursive-include src *.pyx *.pxd *.py
+recursive-include ext *.cpp *.h

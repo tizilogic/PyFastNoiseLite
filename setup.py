@@ -86,12 +86,12 @@ if not os.path.exists('ext/FastNoise/Cpp/FastNoiseLite.h'):
     zipf = zipfile.ZipFile(buf)
     if not os.path.exists('tmp'):
         os.makedirs('tmp')
-    zipf.extractall('tmp')
+    zipf.extractall('tmp/')
     if not os.path.exists('ext/FastNoise'):
         os.makedirs('ext/FastNoise')
-    for pth in glob.glob('tmp/FastNoise/*', recursive=True):
+    for pth in glob.glob('tmp/FastNoise-master/*', recursive=True):
         shutil.move(pth, 'ext/FastNoise')
-    shutil.rmtree('tmp/FastNoise')
+    shutil.rmtree('tmp')
 
 
 setup(
@@ -105,7 +105,7 @@ setup(
     url='https://github.com/tizilogic/pyfastnoiselite',
     packages=find_namespace_packages(where='src'),
     package_data={'pyfastnoiselite': [
-        'LICENSE.md',
+        'LICENSE',
         'VERSION'
     ]},
     package_dir={'': 'src'},
