@@ -4,26 +4,9 @@ jobs:
   include:
     # perform a linux build
     - services: docker
-    # and a mac build for 3.6
+    # and a mac build for 3.8 only -> TODO: find out why
     - os: osx
       language: shell
-      python:
-        - "3.6"
-    # and a mac build for 3.7
-    - os: osx
-      language: shell
-      python:
-        - "3.7"
-    # and a mac build for 3.8
-    - os: osx
-      language: shell
-      python:
-        - "3.8"
-    # and a mac build for 3.9
-    - os: osx
-      language: shell
-      python:
-        - "3.9"
     # windows build 3.6
     - os: windows
       language: shell
@@ -42,12 +25,6 @@ jobs:
       before_install:
         - choco install python --version 3.8
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
-    # windows build 3.9
-    - os: windows
-      language: shell
-      before_install:
-        - choco install python --version 3.8
-        - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
 
 env:
   global:
@@ -56,7 +33,7 @@ env:
     # Note: TWINE_PASSWORD is set to a PyPI API token in Travis settings
 
 install:
-  - python -m pip install twine cibuildwheel==1.1.0
+  - python -m pip install twine cibuildwheel==1.6.1
 
 script:
   # build the wheels, put them into './wheelhouse'
