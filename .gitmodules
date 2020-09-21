@@ -1,0 +1,3 @@
+[submodule "ext/FastNoise"]
+	path = ext/FastNoise
+	url = https://github.com/Auburn/FastNoise.git
