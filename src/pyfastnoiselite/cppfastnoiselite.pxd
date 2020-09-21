@@ -6,7 +6,7 @@ Provides Cython header for "ext/FastNoise/Cpp/FastNoiseLite.h".
 
 __author__ = 'Tiziano Bettio'
 __license__ = 'MIT'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __copyright__ = """Copyright (c) 2020 Tiziano Bettio
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

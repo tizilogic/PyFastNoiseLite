@@ -12,7 +12,7 @@ except ImportError:
 
 __author__ = 'Tiziano Bettio'
 __license__ = 'MIT'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __copyright__ = """
 Copyright (c) 2020 Tiziano Bettio
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42,11 +42,11 @@ if platform.system() == 'Windows':
     EXTRA_COMPILE_ARGS = []
     EXTRA_LINK_ARGS = []
 elif platform.system() == 'Darwin':
-    EXTRA_COMPILE_ARGS = ['-std=c++98', '-stdlib=libc++']
-    EXTRA_LINK_ARGS = ['-std=c++98', '-stdlib=libc++']
+    EXTRA_COMPILE_ARGS = ['-std=c++11', '-stdlib=libc++']
+    EXTRA_LINK_ARGS = ['-std=c++11', '-stdlib=libc++']
 else:
-    EXTRA_COMPILE_ARGS = ['-std=c++98']
-    EXTRA_LINK_ARGS = ['-std=c++98']
+    EXTRA_COMPILE_ARGS = ['-std=c++11']
+    EXTRA_LINK_ARGS = ['-std=c++11']
 
 # Add "c++_shared" to libraries if installed via python-for-android
 LIBRARIES = []

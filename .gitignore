@@ -2,3 +2,7 @@ venv
 *.pyd
 *.o
 *.so
+*.egg-info
+*.egg
+dist
+build
