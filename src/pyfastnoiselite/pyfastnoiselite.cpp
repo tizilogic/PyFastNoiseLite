@@ -4,6 +4,12 @@
 {
     "distutils": {
         "depends": [],
+        "extra_compile_args": [
+            "-std=c++11"
+        ],
+        "extra_link_args": [
+            "-std=c++11"
+        ],
         "include_dirs": [
             "ext/FastNoise",
             "ext/CPPWrapper"
@@ -11,7 +17,7 @@
         "language": "c++",
         "name": "pyfastnoiselite.pyfastnoiselite",
         "sources": [
-            "src/pyfastnoiselite\\pyfastnoiselite.pyx"
+            "src/pyfastnoiselite/pyfastnoiselite.pyx"
         ]
     },
     "module_name": "pyfastnoiselite.pyfastnoiselite"
@@ -857,7 +863,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "src\\pyfastnoiselite\\pyfastnoiselite.pyx",
+  "src/pyfastnoiselite/pyfastnoiselite.pyx",
   "stringsource",
 };
 /* MemviewSliceStruct.proto */
@@ -2063,7 +2069,7 @@ static const char __pyx_k_CellularReturnType_Distance2Add[] = "CellularReturnTyp
 static const char __pyx_k_CellularReturnType_Distance2Div[] = "CellularReturnType_Distance2Div";
 static const char __pyx_k_CellularReturnType_Distance2Mul[] = "CellularReturnType_Distance2Mul";
 static const char __pyx_k_CellularReturnType_Distance2Sub[] = "CellularReturnType_Distance2Sub";
-static const char __pyx_k_Copyright_c_2020_Tiziano_Bettio[] = "Copyright (c) 2020 Tiziano Bettio\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
+static const char __pyx_k_Copyright_c_2020_Tiziano_Bettio[] = "Copyright (c) 2021 Tiziano Bettio\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
 static const char __pyx_k_Provides_the_wrapped_FastNoiseL[] = "\nProvides the wrapped FastNoiseLite C++ class for use in Python.\n";
 static const char __pyx_k_pyfastnoiselite_pyfastnoiselite[] = "pyfastnoiselite.pyfastnoiselite";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
@@ -21067,7 +21073,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__ = 'Tiziano Bettio'             # <<<<<<<<<<<<<<
  * __license__ = 'MIT'
- * __version__ = '0.0.2'
+ * __version__ = '0.0.4'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_u_Tiziano_Bettio) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
 
@@ -21075,24 +21081,24 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__ = 'Tiziano Bettio'
  * __license__ = 'MIT'             # <<<<<<<<<<<<<<
- * __version__ = '0.0.2'
- * __copyright__ = """Copyright (c) 2020 Tiziano Bettio
+ * __version__ = '0.0.4'
+ * __copyright__ = """Copyright (c) 2021 Tiziano Bettio
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_license, __pyx_n_u_MIT) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
 
   /* "pyfastnoiselite/pyfastnoiselite.pyx":24
  * __author__ = 'Tiziano Bettio'
  * __license__ = 'MIT'
- * __version__ = '0.0.2'             # <<<<<<<<<<<<<<
- * __copyright__ = """Copyright (c) 2020 Tiziano Bettio
+ * __version__ = '0.0.4'             # <<<<<<<<<<<<<<
+ * __copyright__ = """Copyright (c) 2021 Tiziano Bettio
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_u_0_0_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
 
   /* "pyfastnoiselite/pyfastnoiselite.pyx":25
  * __license__ = 'MIT'
- * __version__ = '0.0.2'
- * __copyright__ = """Copyright (c) 2020 Tiziano Bettio             # <<<<<<<<<<<<<<
+ * __version__ = '0.0.4'
+ * __copyright__ = """Copyright (c) 2021 Tiziano Bettio             # <<<<<<<<<<<<<<
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  */
