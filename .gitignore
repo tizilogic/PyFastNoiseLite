@@ -6,3 +6,4 @@ venv
 *.egg
 dist
 build
+.vscode
