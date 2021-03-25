@@ -4,27 +4,18 @@ jobs:
   include:
     # perform a linux build
     - services: docker
-    # and a mac build for 3.8 only -> TODO: find out why
+    - services: docker
+      arch: arm64
+    # and a mac build
     - os: osx
       language: shell
-    # windows build 3.6
+    # windows build
     - os: windows
       language: shell
       before_install:
-        - choco install python --version 3.6
-        - export PATH="/c/Python36:/c/Python36/Scripts:$PATH"
-    # windows build 3.7
-    - os: windows
-      language: shell
-      before_install:
-        - choco install python --version 3.7
-        - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-    # windows build 3.8
-    - os: windows
-      language: shell
-      before_install:
-        - choco install python --version 3.8
+        - choco install python --version 3.8.6
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+        - ln -s /c/Python38/python.exe /c/Python38/python3.exe
 
 env:
   global:
@@ -33,11 +24,11 @@ env:
     # Note: TWINE_PASSWORD is set to a PyPI API token in Travis settings
 
 install:
-  - python -m pip install twine cibuildwheel==1.1.0
+  - python3 -m pip install twine cibuildwheel==1.10.0
 
 script:
   # build the wheels, put them into './wheelhouse'
-  - python -m cibuildwheel --output-dir wheelhouse
+  - python3 -m cibuildwheel --output-dir wheelhouse
 
 after_success:
   # if the release was tagged, upload them to PyPI
