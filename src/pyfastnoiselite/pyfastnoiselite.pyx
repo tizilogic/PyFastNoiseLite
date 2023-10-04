@@ -21,7 +21,7 @@ from .cppfastnoiselite cimport FastNoiseLitePy as _FNL
 
 __author__ = 'Tiziano Bettio'
 __license__ = 'MIT'
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __copyright__ = """Copyright (c) 2021 Tiziano Bettio
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -254,7 +254,7 @@ cdef class FastNoiseLite:
     @property
     def cellular_distance_function(self):
         return CellularDistanceFunction(self._cellular_distance_function)
-    
+
     @cellular_distance_function.setter
     def cellular_distance_function(self, func):
         self._set_cellular_distance_function(func.value)
@@ -263,7 +263,7 @@ cdef class FastNoiseLite:
         self._cellular_distance_function = func
         deref(self.thisptr).SetCellularDistanceFunctionPy(func)
 
-    @property 
+    @property
     def cellular_return_type(self):
         return CellularReturnType(self._cellular_return_type)
 
