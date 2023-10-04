@@ -2,4 +2,4 @@
 requires = ["setuptools", "wheel", "numpy"]
 
 [tool.cibuildwheel]
-skip = "pp*"
+skip = ["pp*", "*-win32", "*-manylinux_i686"]
