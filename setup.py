@@ -1,9 +1,11 @@
 import glob
 import os
 import platform
+import sys
+import sysconfig
 from setuptools import setup
 from setuptools import find_namespace_packages
-from distutils.extension import Extension
+from setuptools import Extension
 try:
     from Cython.Build import cythonize
     USE_CYTHON = True
@@ -53,6 +55,16 @@ LIBRARIES = []
 if 'ARCH' in os.environ and os.environ['ARCH'].startswith('arm'):
     LIBRARIES.append('c++_shared')
 
+# Build against the stable ABI so one wheel per platform covers CPython 3.11+.
+# 3.11 is the first version whose limited API includes the buffer protocol
+# needed by typed memoryviews. Free-threaded builds have no stable ABI.
+LIMITED_API = (
+    USE_CYTHON
+    and sys.version_info >= (3, 11)
+    and not sysconfig.get_config_var('Py_GIL_DISABLED')
+)
+DEFINE_MACROS = [('Py_LIMITED_API', '0x030B0000')] if LIMITED_API else []
+
 EXT = '.pyx' if USE_CYTHON else '.cpp'
 EXTENSIONS = [
     Extension(
@@ -62,7 +74,9 @@ EXTENSIONS = [
         extra_compile_args=EXTRA_COMPILE_ARGS,
         extra_link_args=EXTRA_LINK_ARGS,
         language='c++',
-        libraries=LIBRARIES
+        libraries=LIBRARIES,
+        define_macros=DEFINE_MACROS,
+        py_limited_api=LIMITED_API,
     )
     for i in glob.glob('src/pyfastnoiselite/**/*' + EXT, recursive=True)
 ]
@@ -114,7 +128,8 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.9',
     install_requires=['numpy'],
     ext_modules=ext_modules(),
+    options={'bdist_wheel': {'py_limited_api': 'cp311'}} if LIMITED_API else {},
 )

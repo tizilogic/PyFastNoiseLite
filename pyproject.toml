@@ -1,5 +1,11 @@
 [build-system]
-requires = ["setuptools", "wheel", "numpy"]
+requires = ["setuptools>=70.1", "cython>=3.1"]
+build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-skip = ["pp*", "*-win32", "*-manylinux_i686", "*-musllinux_i686"]
+build-frontend = "build[uv]"
+skip = ["pp*", "cp3??t-*", "*-win32", "*-manylinux_i686", "*-musllinux_i686"]
+test-requires = ["numpy"]
+test-command = "python -c \"from pyfastnoiselite.pyfastnoiselite import FastNoiseLite; import numpy as np; assert FastNoiseLite().gen_from_coords(np.zeros((3, 4), np.float32)).shape == (4,)\""
+# No numpy wheels for armv7l, so building it under QEMU would take hours
+test-skip = "*armv7l*"

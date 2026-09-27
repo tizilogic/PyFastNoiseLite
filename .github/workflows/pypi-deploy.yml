@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-13, macos-14]
+        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-15-intel, macos-14]
 
     steps:
       - uses: actions/checkout@v4
@@ -24,16 +24,18 @@ jobs:
       - name: Get submodules
         run: git submodule update --init --recursive
 
-      - name: Install Cython
-        run: python -m pip install cython
+      - uses: astral-sh/setup-uv@v7
 
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.22.0
+      # armv7l (32-bit Raspberry Pi OS) is built under emulation on x86_64
+      - uses: docker/setup-qemu-action@v3
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          platforms: arm
 
       - name: Build wheels
-        run: python -m cibuildwheel --output-dir wheelhouse
+        run: uvx cibuildwheel==4.2.1 --output-dir wheelhouse
         env:
-          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8"
+          CIBW_ARCHS_LINUX: ${{ matrix.os == 'ubuntu-latest' && 'auto armv7l' || 'auto' }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -49,11 +51,15 @@ jobs:
       - name: Get submodules
         run: git submodule update --init --recursive
 
+      - uses: astral-sh/setup-uv@v7
+
       - name: Build sdist
-        run: pipx run build --sdist
+        run: uv build --sdist
 
       - uses: actions/upload-artifact@v4
         with:
+          # upload_pypi only downloads cibw-* artifacts
+          name: cibw-sdist
           path: dist/*.tar.gz
 
   upload_pypi:
